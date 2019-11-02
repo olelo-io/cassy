@@ -27,18 +27,32 @@ class Cassy
         $this->urlPrefix = $urlPrefix;
     }
 
-    public function getCdnUrl($url)
+    /**
+     * @param $url
+     * @param null $quality
+     * @return string
+     * @throws CassyException
+     */
+    public function getCdnUrl($url, $quality = null)
     {
         if(!$this->isValidUrl($url)) {
             throw new CassyException('"' . $url . '" is not a valid URL.');
         }
 
-        return $this->urlPrefix .'/'.$url;
+        $quality = $quality ? '?quality='.$quality : '';
+
+        return $this->urlPrefix .'/'.$url.$quality;
     }
 
-    public function cdn($url)
+    /**
+     * @param $url
+     * @param null $quality
+     * @return string
+     * @throws CassyException
+     */
+    public function cdn($url, $quality = null)
     {
-        return $this->getCdnUrl($url);
+        return $this->getCdnUrl($url, $quality);
     }
 
     /**
