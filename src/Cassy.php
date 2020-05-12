@@ -41,7 +41,7 @@ class Cassy
 
         $quality = $quality ? '?quality='.$quality : '';
 
-        return $this->urlPrefix .'/'.$url.$quality;
+        return $this->urlPrefix .'/'.urlencode($url).$quality;
     }
 
     /**
